@@ -12,8 +12,12 @@ dependencies {
     implementation(libs.spring.boot.starter.web)
     // OpenAPI
     implementation(libs.bundles.openapi)
+    // Common
+    implementation(libs.gson)
     // Tests
-    testImplementation(libs.spring.boot.starter.test)
+    testImplementation(libs.bundles.test) {
+        exclude(module = "mockito-core")
+    }
 }
 
 openApiGenerate {
@@ -26,7 +30,8 @@ openApiGenerate {
         mapOf(
             "delegatePattern" to "true",
             "useSpringBoot3" to "true",
-        )
+            "useTags" to "true",
+        ),
     )
 }
 
@@ -53,4 +58,8 @@ tasks.bootJar {
     doFirst {
         File(listOf(buildDir, "libs").joinToString(File.separator)).listFiles()?.forEach { it.deleteRecursively() }
     }
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

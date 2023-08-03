@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     alias(gradlePlugins.plugins.kotlin.jvm)
+    alias(gradlePlugins.plugins.spotless)
 }
 
 java {
@@ -26,6 +27,19 @@ allprojects {
         kotlinOptions {
             freeCompilerArgs = listOf("-Xjsr305=strict")
             jvmTarget = "17"
+        }
+    }
+}
+
+subprojects {
+    apply {
+        plugin("com.diffplug.spotless")
+    }
+    spotless {
+        kotlin {
+            ktlint()
+            target("**/src/main/kotlin/*.kt")
+            targetExclude("**/generated/**")
         }
     }
 }
