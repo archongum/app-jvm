@@ -1,4 +1,4 @@
-rootProject.name = "app-java"
+rootProject.name = "app-jvm"
 include("uc")
 
 dependencyResolutionManagement {
