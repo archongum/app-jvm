@@ -14,12 +14,12 @@ class RestInterceptor : HandlerInterceptor {
         response: HttpServletResponse,
         handler: Any,
     ): Boolean {
-        val traceId = request.getHeader("X-Request-ID")
+        var traceId = request.getHeader("X-Request-ID")
         if (traceId == null || traceId.isBlank()) {
-            val uuid = UUID.randomUUID().toString().replace("-", "").substring(0, 16)
-            response.setHeader("X-Request-ID", uuid)
-            MDC.put("traceid", uuid)
+            traceId = UUID.randomUUID().toString().replace("-", "").substring(0, 16)
         }
+        response.setHeader("X-Request-ID", traceId)
+        MDC.put("traceid", traceId)
         return super.preHandle(request, response, handler)
     }
 }
