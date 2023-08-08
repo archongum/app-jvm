@@ -15,13 +15,9 @@ allprojects {
     version = "0.0.1"
     repositories {
         mavenLocal()
-        maven(url = "https://maven.datastory.com.cn/nexus/content/groups/public/")
-        maven(url = "https://maven.aliyun.com/nexus/content/groups/public")
+        maven(url = "https://maven.aliyun.com/repository/public")
         maven(url = "https://maven.aliyun.com/repository/gradle-plugin")
-        maven(url = "https://maven.aliyun.com/repository/central")
-        maven(url = "https://maven.aliyun.com/repository/jcenter")
-        maven(url = "https://maven.aliyun.com/repository/google")
-        maven(url = "https://packages.confluent.io/maven/")
+        maven(url = "https://maven.aliyun.com/repository/spring")
     }
     tasks.withType<KotlinCompile> {
         kotlinOptions {
@@ -29,16 +25,19 @@ allprojects {
             jvmTarget = "17"
         }
     }
-}
-
-subprojects {
+    // Formatter
     apply {
         plugin("com.diffplug.spotless")
     }
     spotless {
         kotlin {
             ktlint()
-            target("**/src/main/kotlin/*.kt")
+            target("*.kt", "*.kts")
+            targetExclude("**/generated/**")
+        }
+        yaml {
+            prettier()
+            target("*.yml")
             targetExclude("**/generated/**")
         }
     }

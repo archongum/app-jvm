@@ -1,4 +1,4 @@
-# root = true
+root = true
 
 [*]
 indent_style = space
@@ -6,11 +6,18 @@ indent_size = 4
 end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
-insert_final_newline = true
+insert_final_newline = false
 
-# ktfmt
-[*.kt]
+[*.bat]
+end_of_line = crlf
+
+[*.yml]
+indent_size = 2
+
+[{*.kt,*.kts}]
+ktlint_code_style = intellij_idea
 max_line_length = 120
+insert_final_newline = true
 ij_continuation_indent_size = 4
 ij_java_names_count_to_use_import_on_demand = 9999
 ij_kotlin_align_in_columns_case_branch = false
@@ -92,8 +99,6 @@ ij_kotlin_wrap_elvis_expressions = 1
 ij_kotlin_wrap_expression_body_functions = 1
 ij_kotlin_wrap_first_method_in_call_chain = false
 
-[gradlew.bat]
-end_of_line = crlf
-
-[*.yml]
-indent_size = 2
+[*.kts]
+# Do not wrap lines
+max_line_length = 9999

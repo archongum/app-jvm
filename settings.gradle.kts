@@ -47,7 +47,7 @@ dependencyResolutionManagement {
                 "openapi",
                 listOf(
                     "openapi-webmvc-ui",
-                )
+                ),
             )
             bundle(
                 "test",
@@ -56,7 +56,7 @@ dependencyResolutionManagement {
                     "test-junit-jupiter-api",
                     "test-junit-jupiter-engine",
                     "test-spring-mockk",
-                )
+                ),
             )
         }
     }
