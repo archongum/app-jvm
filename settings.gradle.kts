@@ -10,6 +10,7 @@ dependencyResolutionManagement {
         // OpenAPI
         val openapi = "2.1.0"
         val openapiGenerator = "6.6.0"
+        val knife4j = "4.3.0"
         // Common
         val gson = "2.10.1"
         // Convention
@@ -36,6 +37,7 @@ dependencyResolutionManagement {
             library("spring-boot-starter-web", "org.springframework.boot", "spring-boot-starter-web").withoutVersion()
             // OpenAPI
             library("openapi-webmvc-ui", "org.springdoc:springdoc-openapi-starter-webmvc-ui:$openapi")
+            library("knife4j-openapi3", "com.github.xiaoymin:knife4j-openapi3-jakarta-spring-boot-starter:$knife4j")
             // Common
             library("gson", "com.google.code.gson:gson:$gson")
             // Test
@@ -47,6 +49,7 @@ dependencyResolutionManagement {
                 "openapi",
                 listOf(
                     "openapi-webmvc-ui",
+                    "knife4j-openapi3",
                 ),
             )
             bundle(
